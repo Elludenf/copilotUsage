@@ -29,6 +29,45 @@ Copilot can suggest more efficient code by using its knowledge of the Node.js ru
 
 For example, Copilot might suggest using a more efficient algorithm for a particular task, or it might suggest using a different data structure to improve performance.
 
+**Example**: 
+
+![ShowCase](/ImproveCodePerformance.gif)
+
+***Prompmt***: /fix help me out improving the performance of this funciton
+
+
+``` javascript
+// Old function
+const getAllUsersWithPosts = async () => {
+    const allUsers = await User.findAll(); // Fetching all users from the database
+    const usersWithPosts = [];
+  
+    for (let i = 0; i < allUsers.length; i++) {
+      const user = allUsers[i];
+      const posts = await Post.findAll({ where: { userId: user.id } }); // Fetching posts for each user
+      user.posts = posts; // Adding posts to the user object
+      usersWithPosts.push(user);
+    }
+  
+    return usersWithPosts;
+  };
+```
+
+
+``` javascript
+// New function
+const getAllUsersWithPosts = async () => {
+  const usersWithPosts = await User.findAll({
+    include: [{ model: Post }],
+  });
+
+  return usersWithPosts;
+};
+```
+
+***Conclusion***: The new function is more efficient because it uses a single query to fetch all users and their posts, instead of making multiple queries to fetch each user's posts individually.
+This example highlights the importance of utilizing the ORM's capabilities for handling relationships and performing join operations efficiently. By doing so, we can optimize database queries, minimize the number of queries executed, and improve the overall performance of the application.
+
 ### Identifying potential performance bottlenecks:
 Copilot can identify potential performance bottlenecks by analyzing the code for areas that are computationally expensive. 
 
@@ -40,6 +79,11 @@ For example, Copilot might suggest using the correct syntax for a particular con
 
 ### Security and caveats: 
 Review potential security vulnerabilities on code or SQL queries
+
+Copilot can help you identifiy possible sql injections
+
+**Example**: 
+
 
 ### Reduce code complexity:
  A measure of how difficult it is to understand, maintain, and test a piece of code. It is often used as a metric to identify potential areas of risk in software projects.
@@ -55,7 +99,7 @@ Copilot can help making a more robust functions and chunk down complex functions
 
 **Result**: It created 4 additional functions making it easier to read and mantain. And now the main function has only 4 complexity points
 
-![Prompt](/Chunk_Function_Result2.gif)
+![Result](/Chunk_Function_Result2.gif)
 
 ## Lists
 
