@@ -73,9 +73,48 @@ Copilot can identify potential performance bottlenecks by analyzing the code for
 
 For example, Copilot might suggest using a caching mechanism to reduce the number of times a particular function is called, or it might suggest using a different algorithm for a particular task.
 
+***Example***: Lets say we have a case where we have a function that is called multiple times and it is a heavy function. We can use Copilot to help us identify the bottleneck and suggest a caching mechanism to reduce the number of times the function is called.
+
+``` javascript
+// Inefficient code: Retrieving user details from an external API without memoization
+
+const fetchUserDetails = async (userId) => {
+  const userDetails = await fetch(`https://api.example.com/users/${userId}`);
+  const data = await userDetails.json();
+  return data;
+};
+
+```
+![ShowCase](/Bottleneck1.gif)
+
+***Prompt***: /fix improve latency for this function to improve performance
+
+![Improve](/Bottleneck.gif)
+
+``` javascript
+// Efficient code: Retrieving user details from an external API with memoization using a Map
+
+const userDetailsCache = new Map();
+
+const fetchUserDetails = async (userId) => {
+  if (userDetailsCache.has(userId)) {
+    return userDetailsCache.get(userId);
+  }
+
+  const userDetails = await fetch(`https://api.example.com/users/${userId}`);
+  const data = await userDetails.json();
+  userDetailsCache.set(userId, data);
+  return data;
+};
+```
+**Reasoning**: The new function is more efficient because it uses a Map to cache the results of previous API calls. This reduces the number of times the API is called, which improves performance.
+
 ### Helping to prevent errors: Copilot can help to prevent errors by suggesting code that is correct and idiomatic. 
 
 For example, Copilot might suggest using the correct syntax for a particular construct, or it might suggest using a more robust error handling mechanism.
+
+**Example**:  Copilot can help us to prevent errors by suggesting code that is correct and idiomatic.
+
 
 ### Security and caveats: 
 Review potential security vulnerabilities on code or SQL queries
@@ -101,30 +140,6 @@ Copilot can help making a more robust functions and chunk down complex functions
 
 ![Result](/Chunk_Function_Result2.gif)
 
-## Lists
-
-### Unordered
-
-* Item 1
-* Item 2
-* Item 2a
-* Item 2b
-
-### Ordered
-
-1. Item 1
-1. Item 2
-1. Item 3
-  1. Item 3a
-  1. Item 3b
-
-
-## Blocks of code
-
-``` javascript
-let message = 'Hello world';
-alert(message);
-```
 
 ## Conclusion
 Overall, Copilot can be a valuable tool for improving the performance and reliability of Node.js applications. By using Copilot, developers can save time and effort, and they can produce code that is more efficient, reliable, and easier to maintain.
