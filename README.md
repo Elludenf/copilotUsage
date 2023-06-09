@@ -87,11 +87,11 @@ const fetchUserDetails = async (userId) => {
 };
 
 ```
-![ShowCase](/Bottleneck1.gif)
+![Bottleneck1](/Bottleneck1.gif)
 
 ***Prompt***: /fix improve latency for this function to improve performance
 
-![Improve](/Bottleneck.gif)
+![Bottleneck2](/Bottleneck2.gif)
 
 ``` javascript
 // Efficient code: Retrieving user details from an external API with memoization using a Map
@@ -111,6 +111,39 @@ const fetchUserDetails = async (userId) => {
 ```
 **Reasoning**: The new function is more efficient because it uses a Map to cache the results of previous API calls. This reduces the number of times the API is called, which improves performance.
 
+
+**Example**: Let's say you have an Express.js API endpoint that fetches data from multiple external APIs and performs some computation before sending the response. Copilot can suggest improvements to optimize the code. Here's an example:
+
+``` javascript
+const express = require('express');
+const axios = require('axios');
+
+const app = express();
+
+app.get('/data', async (req, res) => {
+  try {
+    const data1 = await axios.get('https://api.example.com/data1');
+    const data2 = await axios.get('https://api.example.com/data2');
+    const processedData = processData(data1, data2);
+    res.json(processedData);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+function processData(data1, data2) {
+  // Perform computation on data1 and data2
+  // ...
+  return processedData;
+}
+```
+**Prompt**: /fix identify possible performance bottlenecks and fix this code
+
+![Bottleneck3](/Bottleneck3.gif)
+
+**Reasoning**: The new function is more efficient because it uses a Promise.all() to fetch data from multiple APIs in parallel. This reduces the amount of time it takes to fetch the data, which improves performance.
+
 ### 2. Helping to prevent errors: Copilot can help to prevent errors by suggesting code that is correct and idiomatic. 
 
 For example, Copilot might suggest using the correct syntax for a particular construct, or it might suggest using a more robust error handling mechanism.
@@ -127,11 +160,12 @@ Copilot can help you identifiy possible sql injections
 
 **Example**:  Given a query where we are concating the user input to the query string. Copilot can help us to prevent sql injections by suggesting secure code.
 
+**Prompt**: /fix help me out checking and fixing sql vulnerabilities
+
+
 ![Prompt](/Security%20-Vulnerabilities%20-SQL.gif)
 
-
-
-
+**Reasoning**: The new function is more secure because it uses a parameterized query instead of concatenating the user input to the query string. This prevents SQL injection attacks.
 
 ### 4. Reduce code complexity:
 
