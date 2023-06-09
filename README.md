@@ -24,7 +24,8 @@ Disk I/O: The amount of disk I/O that your application performs can also impact 
 
 ## How to use Copilot to improve Node.js performance
 
-### Suggesting more efficient code: 
+### Suggesting more efficient code:
+
 Copilot can suggest more efficient code by using its knowledge of the Node.js runtime to understand how different code paths perform. 
 
 For example, Copilot might suggest using a more efficient algorithm for a particular task, or it might suggest using a different data structure to improve performance.
@@ -68,7 +69,8 @@ const getAllUsersWithPosts = async () => {
 ***Conclusion***: The new function is more efficient because it uses a single query to fetch all users and their posts, instead of making multiple queries to fetch each user's posts individually.
 This example highlights the importance of utilizing the ORM's capabilities for handling relationships and performing join operations efficiently. By doing so, we can optimize database queries, minimize the number of queries executed, and improve the overall performance of the application.
 
-### Identifying potential performance bottlenecks:
+### 1. Identifying potential performance bottlenecks:
+
 Copilot can identify potential performance bottlenecks by analyzing the code for areas that are computationally expensive. 
 
 For example, Copilot might suggest using a caching mechanism to reduce the number of times a particular function is called, or it might suggest using a different algorithm for a particular task.
@@ -109,23 +111,31 @@ const fetchUserDetails = async (userId) => {
 ```
 **Reasoning**: The new function is more efficient because it uses a Map to cache the results of previous API calls. This reduces the number of times the API is called, which improves performance.
 
-### Helping to prevent errors: Copilot can help to prevent errors by suggesting code that is correct and idiomatic. 
+### 2. Helping to prevent errors: Copilot can help to prevent errors by suggesting code that is correct and idiomatic. 
 
 For example, Copilot might suggest using the correct syntax for a particular construct, or it might suggest using a more robust error handling mechanism.
+
 
 **Example**:  Copilot can help us to prevent errors by suggesting code that is correct and idiomatic.
 
 
-### Security and caveats: 
+### 3. Security and caveats: 
+
 Review potential security vulnerabilities on code or SQL queries
 
 Copilot can help you identifiy possible sql injections
 
-**Example**: 
+**Example**:  Given a query where we are concating the user input to the query string. Copilot can help us to prevent sql injections by suggesting secure code.
+
+![Prompt](/Security%20-Vulnerabilities%20-SQL.gif)
 
 
-### Reduce code complexity:
- A measure of how difficult it is to understand, maintain, and test a piece of code. It is often used as a metric to identify potential areas of risk in software projects.
+
+
+
+### 4. Reduce code complexity:
+
+A measure of how difficult it is to understand, maintain, and test a piece of code. It is often used as a metric to identify potential areas of risk in software projects.
 
 Copilot can help making a more robust functions and chunk down complex functions with the right prompt. 
 
@@ -133,13 +143,13 @@ Copilot can help making a more robust functions and chunk down complex functions
 
 **Prompt**: /fix help me out chucking this code into smaller functions
 
-
 ![Prompt](/Chunk_Function_Prompt.gif)
 
-**Result**: It created 4 additional functions making it easier to read and mantain. And now the main function has only 4 complexity points
+**Reasoning**: It created 4 additional functions making it easier to read and mantain. And now the main function has only 4 complexity points
 
 ![Result](/Chunk_Function_Result2.gif)
 
 
 ## Conclusion
+
 Overall, Copilot can be a valuable tool for improving the performance and reliability of Node.js applications. By using Copilot, developers can save time and effort, and they can produce code that is more efficient, reliable, and easier to maintain.
